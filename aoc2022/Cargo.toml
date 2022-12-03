@@ -1,4 +1,9 @@
 [workspace]
 members = [
-    "day01"
+    "day01",
+    "day02",
 ]
+
+[profile.release]
+lto = true
+
