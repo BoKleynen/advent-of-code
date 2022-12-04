@@ -15,18 +15,18 @@ fn main() {
 	let s = fs::read_to_string(cmd.input).unwrap();
 
 	let points = if cmd.outcome {
-		challange2(&s)
+		part2(&s)
 	} else {
-		challange1(&s)
+		part1(&s)
 	};
 
 	println!("{points}");
 }
 
-fn challange1(s: &str) -> u32 {
+fn part1(s: &str) -> u32 {
 	s.lines()
 		.map(|line| {
-			let opponent = Move::parse_oponnent(&line[0..1]);
+			let opponent = Move::parse_opponent(&line[0..1]);
 			let own = Move::parse_own(&line[2..3]);
 			let game_result = play_game(own, opponent);
 
@@ -35,10 +35,10 @@ fn challange1(s: &str) -> u32 {
 		.sum()
 }
 
-fn challange2(s: &str) -> u32 {
+fn part2(s: &str) -> u32 {
 	s.lines()
 		.map(|line| {
-			let opponent = Move::parse_oponnent(&line[0..1]);
+			let opponent = Move::parse_opponent(&line[0..1]);
 			let game_result = GameResult::decrypt_outcome(&line[2..3]);
 			let own = calculate_move(opponent, game_result);
 
@@ -52,13 +52,8 @@ fn play_game(you: Move, opponent: Move) -> GameResult {
 		(Move::Rock, Move::Scissors) => GameResult::Win,
 		(Move::Paper, Move::Rock) => GameResult::Win,
 		(Move::Scissors, Move::Paper) => GameResult::Win,
-		(x, y) => {
-			if x == y {
-				GameResult::Draw
-			} else {
-				GameResult::Lose
-			}
-		}
+		(x, y) if x == y => GameResult::Draw,
+		_ => GameResult::Lose,
 	}
 }
 
@@ -95,7 +90,7 @@ impl Move {
 		}
 	}
 
-	fn parse_oponnent(s: &str) -> Self {
+	fn parse_opponent(s: &str) -> Self {
 		match s {
 			"A" => Move::Rock,
 			"B" => Move::Paper,
@@ -149,7 +144,7 @@ impl GameResult {
 
 #[cfg(test)]
 mod test {
-	use crate::{challange1, challange2};
+	use crate::{part1, part2};
 
 	const DATA: &str = r#"A Y
 B X
@@ -157,11 +152,11 @@ C Z"#;
 
 	#[test]
 	fn test_part1() {
-		assert_eq!(challange1(DATA), 15);
+		assert_eq!(part1(DATA), 15);
 	}
 
 	#[test]
 	fn test_part2() {
-		assert_eq!(challange2(DATA), 12);
+		assert_eq!(part2(DATA), 12);
 	}
 }
