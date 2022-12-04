@@ -40,10 +40,7 @@ fn sum_top_calories(s: &str, k: usize) -> u32 {
 mod test {
 	use super::sum_top_calories;
 
-	#[test]
-	fn test_part1() {
-		let data = r#"
-1000
+	const DATA: &str = r#"1000
 2000
 3000
 
@@ -58,27 +55,13 @@ mod test {
 
 10000"#;
 
-		assert_eq!(sum_top_calories(&data, 1), 24000);
+	#[test]
+	fn test_part1() {
+		assert_eq!(sum_top_calories(DATA, 1), 24000);
 	}
 
 	#[test]
 	fn test_part2() {
-		let data = r#"
-1000
-2000
-3000
-
-4000
-
-5000
-6000
-
-7000
-8000
-9000
-
-10000"#;
-
-		assert_eq!(sum_top_calories(&data, 3), 45000);
+		assert_eq!(sum_top_calories(DATA, 3), 45000);
 	}
 }

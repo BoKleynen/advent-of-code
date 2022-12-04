@@ -151,21 +151,17 @@ impl GameResult {
 mod test {
 	use crate::{challange1, challange2};
 
-	#[test]
-	fn test_part1() {
-		let data = r#"A Y
+	const DATA: &str = r#"A Y
 B X
 C Z"#;
 
-		assert_eq!(challange1(data), 15);
+	#[test]
+	fn test_part1() {
+		assert_eq!(challange1(DATA), 15);
 	}
 
 	#[test]
 	fn test_part2() {
-		let data = r#"A Y
-B X
-C Z"#;
-
-		assert_eq!(challange2(data), 12);
+		assert_eq!(challange2(DATA), 12);
 	}
 }
