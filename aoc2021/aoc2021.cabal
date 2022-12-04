@@ -1,0 +1,40 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.35.0.
+--
+-- see: https://github.com/sol/hpack
+
+name:           aoc2021
+version:        0.0.0
+homepage:       https://github.com/BoKleynen/advent-of-code#readme
+bug-reports:    https://github.com/BoKleynen/advent-of-code/issues
+author:         Bo Kleynen
+maintainer:     Bo Kleynen
+build-type:     Simple
+extra-source-files:
+    package.yaml
+
+source-repository head
+  type: git
+  location: https://github.com/BoKleynen/advent-of-code
+  subdir: aoc2021
+
+executable day01
+  main-is: Main.hs
+  other-modules:
+      Paths_aoc2021
+  hs-source-dirs:
+      day01
+  build-depends:
+      base >=4.16 && <4.18
+  default-language: Haskell2010
+
+executable day02
+  main-is: Main.hs
+  other-modules:
+      Paths_aoc2021
+  hs-source-dirs:
+      day02
+  build-depends:
+      base >=4.16 && <4.18
+  default-language: Haskell2010

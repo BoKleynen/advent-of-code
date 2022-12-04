@@ -1,0 +1,13 @@
+name: aoc2021
+author: Bo Kleynen
+github: BoKleynen/advent-of-code/aoc2021
+extra-source-files:
+  - package.yaml
+dependencies: base >=4.16 && <4.18
+executables:
+  day01:
+    source-dirs: day01
+    main: Main.hs
+  day02:
+    source-dirs: day02
+    main: Main.hs
