@@ -6,6 +6,14 @@ members = [
     "day04",
 ]
 
+[workspace.package]
+authors = ["Bo Kleynen"]
+version = "0.1.0"
+edition = "2021"
+
+[workspace.dependencies]
+clap = { version = "4.0.29", features = ["derive"] }
+
 [profile.release]
 lto = true
 

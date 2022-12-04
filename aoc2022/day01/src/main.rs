@@ -1,5 +1,6 @@
 use clap::Parser;
 use std::fs;
+use std::iter;
 use std::vec;
 
 #[derive(Parser, Debug)]
@@ -21,7 +22,7 @@ fn main() {
 fn sum_top_calories(s: &str, k: usize) -> u32 {
 	let mut top_calories = vec![0; k];
 	let mut temp = 0;
-	for line in s.lines() {
+	for line in s.lines().chain(iter::once("")) {
 		if line.is_empty() {
 			if let Some(index) = top_calories.iter().position(|&calories| temp > calories) {
 				top_calories.pop();
