@@ -1,0 +1,8 @@
+[package]
+name = "day06"
+authors.workspace = true
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+clap.workspace = true

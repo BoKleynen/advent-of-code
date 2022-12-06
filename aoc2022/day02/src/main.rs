@@ -14,11 +14,7 @@ fn main() {
 
 	let s = fs::read_to_string(cmd.input).unwrap();
 
-	let points = if cmd.outcome {
-		part2(&s)
-	} else {
-		part1(&s)
-	};
+	let points = if cmd.outcome { part2(&s) } else { part1(&s) };
 
 	println!("{points}");
 }

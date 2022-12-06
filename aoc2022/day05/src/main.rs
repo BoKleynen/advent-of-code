@@ -29,13 +29,13 @@ fn main() {
 }
 
 fn part1(input: &str) -> String {
-	let (_, mut puzzle) = parse_input(&input).unwrap();
+	let (_, mut puzzle) = parse_input(input).unwrap();
 	puzzle.run_9000();
 	puzzle.top_crates()
 }
 
 fn part2(input: &str) -> String {
-	let (_, mut puzzle) = parse_input(&input).unwrap();
+	let (_, mut puzzle) = parse_input(input).unwrap();
 	puzzle.run_9001();
 	puzzle.top_crates()
 }
