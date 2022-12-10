@@ -17,11 +17,35 @@ struct Day07 {
 fn main() {
 	let cmd = Day07::parse();
 	let input = fs::read_to_string(cmd.input).unwrap();
-	let res = part1(&input);
-	println!("{res}");
+	let directory_sizes = directory_sizes(&input);
+
+	let res1 = part1(&directory_sizes);
+	println!("{res1}");
+
+	let res2 = part2(&directory_sizes);
+	println!("{res2}");
 }
 
-fn part1(input: &str) -> u64 {
+fn part1(dirs: &HashMap<String, u64>) -> u64 {
+	dirs.values().filter(|&&size| size <= 100_000).sum()
+}
+
+fn part2(dirs: &HashMap<String, u64>) -> u64 {
+	const CAPACITY: u64 = 70000000;
+	const UPDATE_SIZE: u64 = 30000000;
+
+	let used_space: u64 = dirs[""];
+	let unused = CAPACITY - used_space;
+	let required = UPDATE_SIZE - unused;
+
+	*dirs
+		.values()
+		.filter(|&&size| size >= required)
+		.min()
+		.unwrap()
+}
+
+fn directory_sizes(input: &str) -> HashMap<String, u64> {
 	let mut path = Vec::new();
 	let mut dirs = HashMap::<String, u64>::new();
 
@@ -48,11 +72,7 @@ fn part1(input: &str) -> u64 {
 		},
 	});
 	debug_assert!(it.finish().unwrap().0.is_empty());
-
-	dirs.iter()
-		.map(|(_dir, size)| *size)
-		.filter(|&size| size <= 100_000)
-		.sum()
+	dirs
 }
 
 #[derive(Debug)]
@@ -114,7 +134,7 @@ fn parse_ls(input: &str) -> IResult<&str, ()> {
 
 #[cfg(test)]
 mod test {
-	use crate::part1;
+	use crate::{directory_sizes, part1, part2};
 
 	const DATA: &str = r#"$ cd /
 $ ls
@@ -142,9 +162,11 @@ $ ls
 
 	#[test]
 	fn test_part1() {
-		assert_eq!(part1(DATA), 95437);
+		assert_eq!(part1(&directory_sizes(DATA)), 95437);
 	}
 
 	#[test]
-	fn test_part2() {}
+	fn test_part2() {
+		assert_eq!(part2(&directory_sizes(DATA)), 24933642);
+	}
 }
