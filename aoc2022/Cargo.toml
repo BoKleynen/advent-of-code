@@ -8,7 +8,8 @@ members = [
     "day06",
     "day07",
     "day08",
-    "day10"
+    "day10",
+    "day13",
 ]
 
 [workspace.package]

@@ -1,0 +1,10 @@
+[package]
+name = "day13"
+authors.workspace = true
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+clap.workspace = true
+itertools = "0.10.5"
+nom = "7.1.1"
